@@ -1,13 +1,14 @@
-# Damn Vulnerable NodeJS Application
-
 FROM node:carbon
-LABEL MAINTAINER "Subash SN"
+
+LABEL maintainer="Appsecco"
 
 WORKDIR /app
-
 COPY . .
 
-RUN chmod +x /app/entrypoint.sh \
-	&& npm install
+RUN sed -i 's/\r$//' /app/entrypoint.sh /app/wait-for-it.sh \
+    && chmod +x /app/entrypoint.sh /app/wait-for-it.sh \
+    && npm install
 
-CMD ["bash", "/app/entrypoint.sh"]
+EXPOSE 9090
+
+ENTRYPOINT ["/app/entrypoint.sh"]
