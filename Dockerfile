@@ -1,4 +1,4 @@
-FROM node:14-buster
+FROM node:10-stretch
 
 LABEL maintainer="Appsecco"
 
